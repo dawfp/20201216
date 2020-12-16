@@ -1,5 +1,7 @@
 package fp.daw.prog.examen;
 
+import java.util.Scanner;
+
 public class Ejercicio1 {
 
 	/*
@@ -12,8 +14,15 @@ public class Ejercicio1 {
 	 */
 	
 	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
 		
-
+		System.out.println("Nombre: ");
+		String [] v = in.nextLine().split(" ");
+		StringBuilder sb = new StringBuilder();
+		for (String s: v)
+			sb.append(s.charAt(0));
+		String iniciales = sb.toString();
+		System.out.println(iniciales);
 	}
 
 }

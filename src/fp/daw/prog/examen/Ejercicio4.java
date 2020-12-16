@@ -1,5 +1,7 @@
 package fp.daw.prog.examen;
 
+import java.util.Scanner;
+
 public class Ejercicio4 {
 	
 	/* 
@@ -17,7 +19,61 @@ public class Ejercicio4 {
 	 */
 
 	public static void main(String[] args) {
-		
+		Scanner in = new Scanner(System.in);
+		int guays = 0;
+		int numero = 2;
+		System.out.print("N: ");
+		int N = Integer.parseInt(in.nextLine());
+		while (guays < N) {
+			if (esGuay(numero)) {
+				guays++;
+				System.out.printf("%d: el número %d es guay\n", guays, numero);
+			}
+			numero++;
+		}
 	}
 	
+	static boolean esGuay(int n) {
+		int suma = 0;
+		for (int i=1; i<n && suma != n; i++) {
+			suma = 0;
+			for (int j=i; j<n && suma < n; j++)
+				suma += j;
+		}
+		return suma == n;
+	}
+	
+	
+	
+//	public static void main(String[] args) {
+//		Scanner in = new Scanner(System.in);
+//		int guays = 0;
+//		int numero = 2;
+//		System.out.println("N: ");
+//		int N = Integer.parseInt(in.nextLine());
+//		while (guays < N) {
+//			String r = esGuay(numero);
+//			if (r != null) {
+//				guays++;
+//				System.out.printf("%d: el número %d es guay: %s\n", guays, numero, r);
+//			}
+//			numero++;
+//		}
+//	}
+//	
+//	static String esGuay(int n) {
+//		int suma = 0;
+//		StringBuilder s = null;
+//		for (int i=1; i<n && suma != n; i++) {
+//			suma = 0;
+//			s = new StringBuilder();
+//			for (int j=i; j<n && suma < n; j++) {
+//				if (suma > 0)
+//					s.append(" + ");
+//				s.append(String.valueOf(j));
+//				suma += j;
+//			}
+//		}
+//		return suma == n ? s.toString() : null;
+//	}
 }

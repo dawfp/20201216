@@ -1,5 +1,7 @@
 package fp.daw.prog.examen;
 
+import java.util.Scanner;
+
 public class Ejercicio3 {
 
 	/* 
@@ -29,8 +31,49 @@ public class Ejercicio3 {
 	 * 
 	 */
 	
+	static Scanner in = new Scanner(System.in);
+	static int [] TIPOS = {500, 200, 100, 50, 20, 10, 5, 2, 1};
+	
 	public static void main(String[] args) {
-		
+		do {
+			desglosarCantidad(leerNumero());
+		} while (continuar());
 	}
 	
+	static int leerNumero() {
+		int cantidad;
+		
+		do {
+			System.out.print("Cantidad: ");
+			cantidad = Integer.parseInt(in.nextLine());
+			if (cantidad < 1)
+				System.out.println("La cantidad tiene que ser mayor que cero");
+		} while (cantidad < 1);
+		return cantidad;
+	}
+	
+	static boolean continuar() {
+		String respuesta;
+		boolean incorrecta;
+		do {
+			System.out.print("¿Desglosar otra cantidad? (s/n): ");
+			respuesta = in.nextLine();
+			incorrecta = !respuesta.equalsIgnoreCase("s") && !respuesta.equalsIgnoreCase("n");
+			if (incorrecta)
+				System.out.println("Respuesta incorrecta");
+		} while (incorrecta);
+		return respuesta.equalsIgnoreCase("s");
+	}
+	
+	static void desglosarCantidad(int n) {
+		for (int i=0; i<TIPOS.length && n > 0; i++)
+			if (n >= TIPOS[i])
+				n = desglosar(TIPOS[i], n);
+	}
+	
+	static int desglosar(int tipo, int n) {
+		int d = n / tipo;
+		System.out.printf("%d %s%s de %d euros\n", d, tipo > 2 ? "billete" : "moneda", d > 1 ? "s" : "", tipo);
+		return n % tipo;
+	}
 }
